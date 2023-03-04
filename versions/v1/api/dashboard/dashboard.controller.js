@@ -22,19 +22,19 @@ exports.getUsedInfo = async (req, res, next) => {
           .exec((err, result) => {
             var total_correct = 0;
             var total_incorrect = 0;
-            result.question_details.forEach((element) => {
-              if (element.isCorrect) {
+            result?.question_details?.forEach((element) => {
+              if (element?.isCorrect) {
                 total_correct++;
               }
-              if (element.isIncorrect) {
+              if (element?.isIncorrect) {
                 total_incorrect++;
               }
             });
             callback(err, {
               user_detail: {
-                name: result.user.firstName + " " + result.user.lastName,
+                name: result?.user?.firstName + " " + result?.user?.lastName,
               },
-              used: result.question_details.length,
+              used: result?.question_details?.length,
               total_correct: total_correct,
               total_incorrect: total_incorrect,
             });
