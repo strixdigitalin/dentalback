@@ -13,7 +13,7 @@ const corsOpts = {
 
   allowedHeaders: ["Content-Type"],
 };
-app.use(cors(corsOpts));
+// app.use(cors(corsOpts));
 app.use(function (req, res, next) {
   console.log(req._parsedUrl.path, "----<<<<<<<<<<<Current ");
   res.setHeader("Access-Control-Allow-Origin", "*");
