@@ -6,7 +6,14 @@ require("dotenv").config();
 //Connection db
 require("./versions/v1/helpers/init.mongodb");
 const app = express();
-app.use(cors({ origin: true, credentials: true }));
+const corsOpts = {
+  origin: "*",
+
+  methods: ["GET", "POST"],
+
+  allowedHeaders: ["Content-Type"],
+};
+app.use(cors(corsOpts));
 app.use(function (req, res, next) {
   console.log(req._parsedUrl.path, "----<<<<<<<<<<<Current ");
   res.setHeader("Access-Control-Allow-Origin", "*");
