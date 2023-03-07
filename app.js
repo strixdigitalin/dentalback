@@ -8,6 +8,20 @@ require("./versions/v1/helpers/init.mongodb");
 
 const app = express();
 app.use(cors());
+app.use(function (req, res, next) {
+  console.log(req._parsedUrl.path, "----<<<<<<<<<<<Current ");
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  next();
+});
 
 require("events").EventEmitter.defaultMaxListeners = 15;
 
@@ -17,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // OK route.
 app.get("/", (_req, res) => {
+  console.log("here");
   res.send("OK");
 });
 
